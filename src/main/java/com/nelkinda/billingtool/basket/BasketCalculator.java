@@ -19,6 +19,11 @@ public class BasketCalculator {
                             .multiply(BigDecimal.valueOf(basketItem.getQuantity())));
         }
         total = soupDiscount(total);
+        total = appleDiscount(total);
+        return total;
+    }
+
+    private BigDecimal appleDiscount(BigDecimal total) {
         if (basketProductMap.containsKey("apples")) {
             final double discount = 0.01;
             final int totalApples = basketProductMap.get("apples").getQuantity();
