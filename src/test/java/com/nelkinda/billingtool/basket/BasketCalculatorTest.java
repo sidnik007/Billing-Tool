@@ -81,6 +81,15 @@ class BasketCalculatorTest {
         assertTotal(basket, "1.70");
     }
 
+    @Test
+    @DisplayName("Basket with apples returns the discounted price")
+    void testDiscountedItem() {
+        final List<BasketItem> basket = new ArrayList<>(Collections.singletonList(
+                factory.createBasketItem(APPLES, "1")
+        ));
+        assertTotal(basket, "0.09");
+    }
+
     private void assertTotal(final List<BasketItem> basket, final String expectedTotal) {
         final BigDecimal actualTotal = calculator.calculateTotal(basket);
         assertEquals(new BigDecimal(expectedTotal), actualTotal);
