@@ -49,6 +49,7 @@ class InputHandlerTest {
         assertEquals(expectedDisplay, actualDisplay);
     }
 
+    // Fragile test. Added for increasing code coverage
     @Test
     @DisplayName("test interaction when 1 tins of soup is selected")
     void testInteractionWithOneTinOfSoup() {
@@ -60,6 +61,7 @@ class InputHandlerTest {
         assertTrue(testOut.toString().contains("0.65"));
     }
 
+    // Fragile test. Added for increasing code coverage
     @Test
     @DisplayName("test interaction when 2 tins of soup and 1 loaf of bread is selected")
     void testInteractionWithTwoSoupsAndOneBread() {
