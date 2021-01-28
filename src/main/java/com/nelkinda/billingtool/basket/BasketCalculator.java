@@ -5,8 +5,11 @@ import java.util.List;
 
 public class BasketCalculator {
 
-    @SuppressWarnings("all")
-    public BigDecimal calculateTotal(final List<Object> basket) {
-        return BigDecimal.ZERO;
+    BigDecimal calculateTotal(final List<BasketItem> basket) {
+        BigDecimal total = BigDecimal.ZERO;
+        for (final BasketItem basketItem: basket) {
+            total = basketItem.getCost();
+        }
+        return total;
     }
 }
