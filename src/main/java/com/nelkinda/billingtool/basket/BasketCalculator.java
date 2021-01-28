@@ -9,8 +9,12 @@ public class BasketCalculator {
 
     private final Map<String, BasketItem> productBasket = new ConcurrentHashMap<>();
 
-
-    BigDecimal calculateTotal(final List<BasketItem> basket) {
+    /**
+     * Calculates total of items presented in the List parameter.
+     * @param basket - list of BasketItems
+     * @return - total of the items in the List along with the discount
+     */
+    public BigDecimal calculateTotal(final List<BasketItem> basket) {
         BigDecimal total = BigDecimal.ZERO;
         for (final BasketItem basketItem: basket) {
             productBasket.put(basketItem.getProductName(), basketItem);

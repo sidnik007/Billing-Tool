@@ -13,7 +13,13 @@ public class BasketItemFactory {
         this.stockItemLoader = stockItemLoader;
     }
 
-    BasketItem createBasketItem(final String productName, final String quantity) {
+    /**
+     * Creates a BasketItem object from product and quantity.
+     * @param productName - the name of the product in the basket
+     * @param quantity - the total number in the basket
+     * @return - BasketItem object
+     */
+    public BasketItem createBasketItem(final String productName, final String quantity) {
         BasketItem basketItem = null;
         final List<StockItem> stockItems = stockItemLoader.loadStockItems();
         for (final StockItem stockItem : stockItems) {
