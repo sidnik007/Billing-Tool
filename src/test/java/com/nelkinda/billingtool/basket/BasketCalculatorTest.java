@@ -121,7 +121,8 @@ class BasketCalculatorTest {
     }
 
     @Test
-    @DisplayName("Basket with 3 apples, 2 tins of soups and 1 loaf bread bought in 5 days time returns the total as 1.97")
+    @DisplayName("Basket with 3 apples, 2 tins of soups and 1 loaf bread "
+            + "bought in 5 days time returns the total as 1.97")
     void testBasketWithThreeApplesTwoSoupsAndOneBreadBoughtInFiveDays() {
         final List<BasketItem> basket = new ArrayList<>();
         final BasketItem apples = factory.createBasketItem(APPLES, "3");
