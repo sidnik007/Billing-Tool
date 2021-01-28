@@ -20,7 +20,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class SoupDiscountTest {
 
-    private static final String TOTAL = "2.10";
+    private static final String ACTUAL_TOTAL = "2.10";
     private Discount discount;
 
     private Map<String, BasketItem> productBasketMap;
@@ -37,7 +37,7 @@ class SoupDiscountTest {
     void testSoupDiscountWhenDiscountDateIsValid() {
         productBasketMap = createProductBasketMap();
         setDates("2021-01-22T10:15:30.00Z", "2021-01-21", "2021-01-23");
-        final BigDecimal actualTotal = discount.calculateDiscount(productBasketMap, new BigDecimal(TOTAL));
+        final BigDecimal actualTotal = discount.calculateDiscount(productBasketMap, new BigDecimal(ACTUAL_TOTAL));
         assertEquals(new BigDecimal("1.70"), actualTotal);
     }
 
@@ -46,8 +46,8 @@ class SoupDiscountTest {
     void testSoupDiscountWhenDiscountDateIsPassed() {
         productBasketMap = createProductBasketMap();
         setDates("2021-01-19T10:15:30.00Z", "2021-01-17", "2021-01-18");
-        final BigDecimal actualTotal = discount.calculateDiscount(productBasketMap, new BigDecimal(TOTAL));
-        assertEquals(new BigDecimal(TOTAL), actualTotal);
+        final BigDecimal actualTotal = discount.calculateDiscount(productBasketMap, new BigDecimal(ACTUAL_TOTAL));
+        assertEquals(new BigDecimal(ACTUAL_TOTAL), actualTotal);
     }
 
     @Test
@@ -55,8 +55,8 @@ class SoupDiscountTest {
     void testSoupDiscountWhenDiscountDateIsYetToCome() {
         productBasketMap = createProductBasketMap();
         setDates("2021-01-16T10:15:30.00Z", "2021-01-17", "2021-01-18");
-        final BigDecimal actualTotal = discount.calculateDiscount(productBasketMap, new BigDecimal(TOTAL));
-        assertEquals(new BigDecimal(TOTAL), actualTotal);
+        final BigDecimal actualTotal = discount.calculateDiscount(productBasketMap, new BigDecimal(ACTUAL_TOTAL));
+        assertEquals(new BigDecimal(ACTUAL_TOTAL), actualTotal);
     }
 
     @Test
@@ -65,8 +65,8 @@ class SoupDiscountTest {
         productBasketMap = new ConcurrentHashMap<>();
         productBasketMap.put(BREAD, new BasketItem(BREAD, "1", BigDecimal.valueOf(0.80), new NoDiscount()));
         setDates("2021-01-22T10:15:30.00Z", "2021-01-21", "2021-01-23");
-        final BigDecimal actualTotal = discount.calculateDiscount(productBasketMap, new BigDecimal(TOTAL));
-        assertEquals(new BigDecimal(TOTAL), actualTotal);
+        final BigDecimal actualTotal = discount.calculateDiscount(productBasketMap, new BigDecimal(ACTUAL_TOTAL));
+        assertEquals(new BigDecimal(ACTUAL_TOTAL), actualTotal);
     }
 
     private Map<String, BasketItem> createProductBasketMap() {
