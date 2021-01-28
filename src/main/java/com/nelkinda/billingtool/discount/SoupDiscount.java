@@ -17,6 +17,7 @@ public class SoupDiscount extends Discount {
     public SoupDiscount() {
         super();
         clock = Clock.fixed(Instant.now(), ZoneId.of("UTC"));
+        // Hardcoding the dates for assignment purpose. Should be loaded from external resource
         startDate = LocalDate.parse("2021-01-20");
         endDate = LocalDate.parse("2021-01-31");
     }
@@ -41,16 +42,21 @@ public class SoupDiscount extends Discount {
                                         final BigDecimal total) {
         BigDecimal discountedPrice = total;
         final LocalDate currentDate = LocalDate.now(clock);
-        if (currentDate.isAfter(startDate)
-                && currentDate.isBefore(endDate)
-                && basketProductMap.containsKey("soup")
-                && basketProductMap.containsKey("bread")
-                && basketProductMap.get("soup").getQuantity() >= 2
+        if (isEligibleForDiscount(basketProductMap, currentDate)
         ) {
             final BigDecimal costOfBread = basketProductMap.get("bread").getCost();
             final BigDecimal amountToReduce = costOfBread.divide(new BigDecimal(2));
             discountedPrice = discountedPrice.subtract(amountToReduce);
         }
         return discountedPrice;
+    }
+
+    private boolean isEligibleForDiscount(final Map<String, BasketItem> basketProductMap,
+                                          final LocalDate currentDate) {
+        return currentDate.isAfter(startDate)
+                && currentDate.isBefore(endDate)
+                && basketProductMap.containsKey("soup")
+                && basketProductMap.containsKey("bread")
+                && basketProductMap.get("soup").getQuantity() >= 2;
     }
 }
