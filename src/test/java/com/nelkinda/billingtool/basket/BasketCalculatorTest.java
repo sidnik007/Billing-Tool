@@ -120,6 +120,27 @@ class BasketCalculatorTest {
         assertTotal(basket, "3.15");
     }
 
+    @Test
+    @DisplayName("Basket with 3 apples, 2 tins of soups and 1 loaf bread bought in 5 days time returns the total as 1.97")
+    void testBasketWithThreeApplesTwoSoupsAndOneBreadBoughtInFiveDays() {
+        final List<BasketItem> basket = new ArrayList<>();
+        final BasketItem apples = factory.createBasketItem(APPLES, "3");
+        final BasketItem soup = factory.createBasketItem(SOUP, "2");
+        final BasketItem bread = factory.createBasketItem(BREAD, "1");
+        setValidDiscountDates("2021-01-26T10:15:30.00Z",
+                "2021-01-20",
+                "2021-01-27",
+                soup.getDiscount());
+        setValidDiscountDates("2021-01-26T10:15:30.00Z",
+                "2021-01-24",
+                "2021-02-28",
+                apples.getDiscount());
+        basket.add(soup);
+        basket.add(bread);
+        basket.add(apples);
+        assertTotal(basket, "1.97");
+    }
+
     private void setValidDiscountDates(final String currentDate,
                                        final String startDate,
                                        final String endDate,
