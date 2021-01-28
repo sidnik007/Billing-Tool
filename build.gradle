@@ -1,5 +1,6 @@
 plugins {
     id 'java'
+    id 'application'
     id 'checkstyle'
     id 'pmd'
     id 'name.remal.sonarlint' version '1.1.6'
@@ -17,6 +18,10 @@ sourceCompatibility = 8
 
 repositories {
     mavenCentral()
+}
+
+application {
+    mainClass.set("com.nelkinda.billingtool.MainClass")
 }
 
 dependencyManagement {
