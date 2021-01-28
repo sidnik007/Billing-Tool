@@ -18,8 +18,9 @@ public class AppleDiscount extends Discount {
         super();
         clock = Clock.fixed(Instant.now(), ZoneId.of("UTC"));
         // Hardcoding the dates for assignment purpose. Should be loaded from external resource
-        startDate = LocalDate.parse("2021-01-20");
-        endDate = LocalDate.parse("2021-01-31");
+        // Assuming the current date to be 2020-01-21
+        startDate = LocalDate.parse("2021-01-24");
+        endDate = LocalDate.parse("2021-02-28");
     }
 
     @Override
