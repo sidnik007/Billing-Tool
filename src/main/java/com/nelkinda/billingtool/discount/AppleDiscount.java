@@ -43,14 +43,18 @@ public class AppleDiscount extends Discount {
                                         final BigDecimal total) {
         BigDecimal discountedPrice = total;
         final LocalDate currentDate = LocalDate.now(clock);
-        if (basketProductMap.containsKey("apples")
-                && currentDate.isAfter(startDate)
-                && currentDate.isBefore(endDate)) {
+        if (isEligibleForDiscount(basketProductMap, currentDate)) {
             final double discount = 0.01;
             final int totalApples = basketProductMap.get("apples").getQuantity();
             final double amountToReduce = totalApples * discount;
             discountedPrice = discountedPrice.subtract(BigDecimal.valueOf(amountToReduce));
         }
         return discountedPrice;
+    }
+
+    private boolean isEligibleForDiscount(final Map<String, BasketItem> basketProductMap, final LocalDate currentDate) {
+        return basketProductMap.containsKey("apples")
+                && currentDate.isAfter(startDate)
+                && currentDate.isBefore(endDate);
     }
 }
