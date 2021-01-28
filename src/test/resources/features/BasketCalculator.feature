@@ -32,3 +32,15 @@ Feature: Calculate the basket total
     When the basket is calculated
     Then the total is "1.84"
 
+  Scenario: Price a basket containing 3 apples, 2 tins of soup and a loaf of bread, bought in 5 days time
+    Given billing date is "2021-01-26"
+    And the basket contains following items
+      | product | quantity |
+      | apples  | 3        |
+      | soup    | 2        |
+      | bread   | 1        |
+    And the item "soup" is eligible for discount from "2021-01-20" to "2021-01-27"
+    And the item "apples" is eligible for discount from "2021-01-24" to "2021-02-28"
+    When the basket is calculated
+    Then the total is "1.97"
+
