@@ -11,8 +11,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-import static com.nelkinda.billingtool.TestConstants.BREAD;
-import static com.nelkinda.billingtool.TestConstants.SOUP;
+import static com.nelkinda.billingtool.TestConstants.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class BasketCalculatorTest {
@@ -60,6 +59,26 @@ class BasketCalculatorTest {
                 factory.createBasketItem(BREAD, "1")
         ));
         assertTotal(basket, "1.45");
+    }
+
+    @Test
+    @DisplayName("Basket with multiple counts of two items returns the total price")
+    void testTwoItemsMultipleQuantities() {
+        final List<BasketItem> basket = new ArrayList<>(Arrays.asList(
+                factory.createBasketItem(MILK, "3"),
+                factory.createBasketItem(BREAD, "2")
+        ));
+        assertTotal(basket, "5.50");
+    }
+
+    @Test
+    @DisplayName("Basket with discounted items returns the discounted price")
+    void testDiscountedItems() {
+        final List<BasketItem> basket = new ArrayList<>(Arrays.asList(
+                factory.createBasketItem(SOUP, "2"),
+                factory.createBasketItem(BREAD, "1")
+        ));
+        assertTotal(basket, "1.70");
     }
 
     private void assertTotal(final List<BasketItem> basket, final String expectedTotal) {
