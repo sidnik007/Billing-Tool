@@ -72,7 +72,7 @@ class BasketCalculatorTest {
     }
 
     @Test
-    @DisplayName("Basket with discounted items returns the discounted price")
+    @DisplayName("Basket two soups and one bread returns the discounted price")
     void testDiscountedItems() {
         final List<BasketItem> basket = new ArrayList<>(Arrays.asList(
                 factory.createBasketItem(SOUP, "2"),
