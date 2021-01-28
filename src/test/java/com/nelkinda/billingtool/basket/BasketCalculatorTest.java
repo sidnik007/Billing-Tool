@@ -34,8 +34,8 @@ class BasketCalculatorTest {
     }
 
     @Test
-    @DisplayName("Basket with one non-discounted item returns the price of the item")
-    void testSingleItemQuantityOne() {
+    @DisplayName("Basket with 1 tin of soup returns the total as 0.65")
+    void testBasketWithOneSoup() {
         final List<BasketItem> basket = new ArrayList<>(Collections.singletonList(
                 factory.createBasketItem(SOUP, "1")
         ));
@@ -43,8 +43,8 @@ class BasketCalculatorTest {
     }
 
     @Test
-    @DisplayName("Basket with two counts of non-discounted item returns the total price")
-    void testSingleItemQuantityTwo() {
+    @DisplayName("Basket with 2 tins of soup returns the total as 1.30")
+    void testBasketWithTwoSoups() {
         final List<BasketItem> basket = new ArrayList<>(Collections.singletonList(
                 factory.createBasketItem(SOUP, "2")
         ));
@@ -52,8 +52,8 @@ class BasketCalculatorTest {
     }
 
     @Test
-    @DisplayName("Basket with one count of two non-discounted items returns the total price")
-    void testTwoItemsQuantityOneEach() {
+    @DisplayName("Basket with 1 tin of soup and 1 loaf of bread returns the total as 1.45")
+    void testBasketWithOneSoupAndOneBread() {
         final List<BasketItem> basket = new ArrayList<>(Arrays.asList(
                 factory.createBasketItem(SOUP, "1"),
                 factory.createBasketItem(BREAD, "1")
@@ -62,8 +62,8 @@ class BasketCalculatorTest {
     }
 
     @Test
-    @DisplayName("Basket with multiple counts of two items returns the total price")
-    void testTwoItemsMultipleQuantities() {
+    @DisplayName("Basket with 3 bottles of milk and 2 loaves of bread returns the total as 5.50")
+    void testBasketWithThreeBottlesAndTwoBreads() {
         final List<BasketItem> basket = new ArrayList<>(Arrays.asList(
                 factory.createBasketItem(MILK, "3"),
                 factory.createBasketItem(BREAD, "2")
@@ -72,8 +72,8 @@ class BasketCalculatorTest {
     }
 
     @Test
-    @DisplayName("Basket two soups and one bread returns the discounted price")
-    void testDiscountedItems() {
+    @DisplayName("Basket with 2 tins of soups and 1 loaf bread returns the total as 1.70")
+    void testBasketWithTwoSoupsAndOneBread() {
         final List<BasketItem> basket = new ArrayList<>(Arrays.asList(
                 factory.createBasketItem(SOUP, "2"),
                 factory.createBasketItem(BREAD, "1")
@@ -82,8 +82,8 @@ class BasketCalculatorTest {
     }
 
     @Test
-    @DisplayName("Basket with apples returns the discounted price")
-    void testDiscountedItem() {
+    @DisplayName("Basket with 1 apple returns the total as 0.09")
+    void testBasketWithOneApple() {
         final List<BasketItem> basket = new ArrayList<>(Collections.singletonList(
                 factory.createBasketItem(APPLES, "1")
         ));
@@ -92,7 +92,7 @@ class BasketCalculatorTest {
 
     @Test
     @DisplayName("Basket with 3 tins of soup and 2 loaves of bread returns total as 3.15")
-    void testDiscountedItemsWithThreeSoupsAndTwoBreads() {
+    void testBasketWithThreeSoupsAndTwoBreads() {
         final List<BasketItem> basket = new ArrayList<>(Arrays.asList(
                 factory.createBasketItem(SOUP, "3"),
                 factory.createBasketItem(BREAD, "2")
