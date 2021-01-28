@@ -42,38 +42,38 @@ class BasketCalculatorTest {
     @Test
     @DisplayName("Basket with 1 tin of soup returns the total as 0.65")
     void testBasketWithOneSoup() {
-        final List<BasketItem> basket = new ArrayList<>(Collections.singletonList(
+        final List<BasketItem> basket = Collections.singletonList(
                 factory.createBasketItem(SOUP, "1")
-        ));
+        );
         assertTotal(basket, "0.65");
     }
 
     @Test
     @DisplayName("Basket with 2 tins of soup returns the total as 1.30")
     void testBasketWithTwoSoups() {
-        final List<BasketItem> basket = new ArrayList<>(Collections.singletonList(
+        final List<BasketItem> basket = Collections.singletonList(
                 factory.createBasketItem(SOUP, "2")
-        ));
+        );
         assertTotal(basket, "1.30");
     }
 
     @Test
     @DisplayName("Basket with 1 tin of soup and 1 loaf of bread returns the total as 1.45")
     void testBasketWithOneSoupAndOneBread() {
-        final List<BasketItem> basket = new ArrayList<>(Arrays.asList(
+        final List<BasketItem> basket = Arrays.asList(
                 factory.createBasketItem(SOUP, "1"),
                 factory.createBasketItem(BREAD, "1")
-        ));
+        );
         assertTotal(basket, "1.45");
     }
 
     @Test
     @DisplayName("Basket with 3 bottles of milk and 2 loaves of bread returns the total as 5.50")
     void testBasketWithThreeBottlesAndTwoBreads() {
-        final List<BasketItem> basket = new ArrayList<>(Arrays.asList(
+        final List<BasketItem> basket = Arrays.asList(
                 factory.createBasketItem(MILK, "3"),
                 factory.createBasketItem(BREAD, "2")
-        ));
+        );
         assertTotal(basket, "5.50");
     }
 
