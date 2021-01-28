@@ -46,7 +46,7 @@ public class InputHandler {
         return input.toString();
     }
 
-    void handleInput() {
+    public void handleInput() {
         final Scanner scanner = new Scanner(System.in);
         System.out.println("Welcome to Henry's Grocery");
         final String textToBeDisplayed = generateInput();
@@ -59,23 +59,30 @@ public class InputHandler {
             System.out.println("Press q to exit");
 
             final String productId = scanner.next();
+            System.out.println( productId);
             if (StringUtils.isNumeric(productId)) {
-                System.out.println("Please select the quantity");
-                final String quantity = scanner.next();
-                for (final StockItem stockItem: stockItems) {
-                    if (stockItem.getProductId() == Integer.parseInt(productId)) {
-                        handleBasket(stockItem.getProductName(), quantity);
-                    }
-                }
+                createBasketItem(productId, scanner);
             } else if ("c".equals(productId)) {
                 calculateBasket();
                 scanner.close();
                 return;
             } else if ("q".equals(productId)) {
-                scanner.close();
+                System.out.println("Exiting...");
                 System.exit(0);
+            } else {
+                System.out.println("Invalid option. Please try again.");
             }
 
+        }
+    }
+
+    private void createBasketItem(final String productId, final Scanner scanner) {
+        System.out.println("Please select the quantity");
+        final String quantity = scanner.next();
+        for (final StockItem stockItem: stockItems) {
+            if (stockItem.getProductId() == Integer.parseInt(productId)) {
+                handleBasket(stockItem.getProductName(), quantity);
+            }
         }
     }
 
