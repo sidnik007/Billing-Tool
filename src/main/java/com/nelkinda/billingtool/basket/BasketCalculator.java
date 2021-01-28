@@ -18,31 +18,9 @@ public class BasketCalculator {
                     .add(basketItem.getCost()
                             .multiply(BigDecimal.valueOf(basketItem.getQuantity())));
         }
-        total = soupDiscount(total);
-        total = appleDiscount(total);
-        return total;
-    }
-
-    private BigDecimal appleDiscount(BigDecimal total) {
-        if (basketProductMap.containsKey("apples")) {
-            final double discount = 0.01;
-            final int totalApples = basketProductMap.get("apples").getQuantity();
-            final double amountToReduce = totalApples * discount;
-            total = total.subtract(BigDecimal.valueOf(amountToReduce));
+        for (final Map.Entry<String, BasketItem> entry: basketProductMap.entrySet()) {
+            total = basketProductMap.get(entry.getKey()).getDiscount().calculateDiscount(basketProductMap, total);
         }
         return total;
-    }
-
-    private BigDecimal soupDiscount(final BigDecimal total) {
-        BigDecimal discountedPrice = total;
-        if (basketProductMap.containsKey("soup")
-                && basketProductMap.containsKey("bread")
-                && basketProductMap.get("soup").getQuantity() >= 2
-        ) {
-            final BigDecimal costOfBread = basketProductMap.get("bread").getCost();
-            final BigDecimal amountToReduce = costOfBread.divide(new BigDecimal(2));
-            discountedPrice = discountedPrice.subtract(amountToReduce);
-        }
-        return discountedPrice;
     }
 }

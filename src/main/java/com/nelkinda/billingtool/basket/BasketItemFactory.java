@@ -25,6 +25,6 @@ public class BasketItemFactory {
     }
 
     private BasketItem createBasketItem(final String productName, final String quantity, final StockItem stockItem) {
-        return new BasketItem(productName, quantity, stockItem.getCost());
+        return new BasketItem(productName, quantity, stockItem.getCost(), stockItem.getDiscount());
     }
 }
