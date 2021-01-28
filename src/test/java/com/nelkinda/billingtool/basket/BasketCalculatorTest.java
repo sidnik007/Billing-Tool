@@ -35,7 +35,7 @@ class BasketCalculatorTest {
     }
 
     @Test
-    @DisplayName("Basket with two non-discounted items returns the price of the item")
+    @DisplayName("Basket with two counts of non-discounted item returns the total price")
     void testSingleItemQuantityTwo() {
         final BasketCalculator calculator = new BasketCalculator();
         final BasketItemFactory factory = new BasketItemFactory(new InMemoryStockItemLoader());
