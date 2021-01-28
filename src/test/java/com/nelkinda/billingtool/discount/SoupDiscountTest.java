@@ -1,9 +1,6 @@
 package com.nelkinda.billingtool.discount;
 
 import com.nelkinda.billingtool.basket.BasketItem;
-import com.nelkinda.billingtool.discount.Discount;
-import com.nelkinda.billingtool.discount.NoDiscount;
-import com.nelkinda.billingtool.discount.SoupDiscount;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
