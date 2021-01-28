@@ -8,17 +8,6 @@ GRADLE_BOOTSTRAP:=echo -n | $(firstword $(wildcard $(GRADLE) $(shell which gradl
 ## Builds and verifies the project.
 all: build
 
-.PHONY: pipeline
-## Runs the same thing as the pipeline.
-pipeline:
-	$(BUILD) $(BUILDFLAGS) checkUpdates build
-	#$(BUILD) $(BUILDFLAGS) checkUpdates build pitest
-
-.PHONY: continuous
-## Builds and tests continuously.
-continuous:
-	$(BUILD) $(BUILDFLAGS) --continuous test pitest
-
 .PHONY: build
 ## Builds and verifies the project.
 build: $(GRADLE)
@@ -28,16 +17,10 @@ build: $(GRADLE)
 clean:: $(GRADLE)
 	$(BUILD) $(BUILDFLAGS) $@
 
-.PHONY: run bootRun
+.PHONY: run
 ## Runs the application.
-run: bootRun
-bootRun: $(GRADLE)
-	$(BUILD) $(BUILDFLAGS) $@
-
-.PHONY: pitest
-## Runs the Pitest mutation tests.
-pitest: $(GRADLE)
-	$(BUILD) $(BUILDFLAGS) $@
+run: $(GRADLE)
+	./gradlew runApp
 
 .PHONY: checkUpdates
 ## Checks for dependency updates.
