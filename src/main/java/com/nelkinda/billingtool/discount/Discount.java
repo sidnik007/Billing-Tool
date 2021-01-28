@@ -7,7 +7,6 @@ import java.time.Clock;
 import java.time.LocalDate;
 import java.util.Map;
 
-@SuppressWarnings("java:S1610")
 public abstract class Discount {
 
     protected Clock clock;
