@@ -60,6 +60,19 @@ class InputHandlerTest {
         assertTrue(testOut.toString().contains("0.65"));
     }
 
+    @Test
+    @DisplayName("test interaction when 2 tins of soup and 1 loaf of bread is selected")
+    void testInteractionWithTwoSoupsAndOneBread() {
+        final String soup = "1 ";
+        final String soupQuantity = "2 ";
+        final String bread =  "2 ";
+        final String breadQuantity = "1 ";
+        final String calculate = "c ";
+        provideInput(soup + soupQuantity + bread + breadQuantity + calculate);
+        inputHandler.handleInput();
+        assertTrue(testOut.toString().contains("1.70"));
+    }
+
     private void provideInput(final String data) {
         testIn = new ByteArrayInputStream(data.getBytes());
         System.setIn(testIn);
