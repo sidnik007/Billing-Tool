@@ -1,4 +1,4 @@
-package com.nelkinda.template.acceptance; // TODO change
+package com.nelkinda.billingtool.acceptance;
 
 import io.cucumber.junit.CucumberOptions;
 import org.junit.runner.RunWith;

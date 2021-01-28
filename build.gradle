@@ -10,7 +10,7 @@ plugins {
     id 'io.spring.dependency-management' version '1.0.11.RELEASE'
 }
 
-group 'com.nelkinda.templates' // TODO change
+group 'com.nelkinda.billingtool'
 version '0.0.1-SNAPSHOT'
 
 sourceCompatibility = 14
@@ -115,7 +115,7 @@ jacocoTestReport {
 test.finalizedBy jacocoTestReport
 
 pitest {
-    targetClasses.set(['com.nelkinda.template.*']) // TODO change
+    targetClasses.set(['com.nelkinda.billingtool.*'])
     pitestVersion.set('1.5.2')
     timestampedReports.set(false)
     testPlugin.set('junit5')
