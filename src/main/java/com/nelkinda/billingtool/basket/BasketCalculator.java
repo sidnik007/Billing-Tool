@@ -18,14 +18,20 @@ public class BasketCalculator {
                     .add(basketItem.getCost()
                             .multiply(BigDecimal.valueOf(basketItem.getQuantity())));
         }
+        total = soupDiscount(total);
+        return total;
+    }
+
+    private BigDecimal soupDiscount(final BigDecimal total) {
+        BigDecimal discountedPrice = total;
         if (basketProductMap.containsKey("soup")
                 && basketProductMap.containsKey("bread")
                 && basketProductMap.get("soup").getQuantity() == 2
         ) {
             final BigDecimal costOfBread = basketProductMap.get("bread").getCost();
             final BigDecimal amountToReduce = costOfBread.divide(new BigDecimal(2));
-            total = total.subtract(amountToReduce);
+            discountedPrice = discountedPrice.subtract(amountToReduce);
         }
-        return total;
+        return discountedPrice;
     }
 }
