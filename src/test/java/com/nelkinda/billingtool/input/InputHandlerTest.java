@@ -69,7 +69,7 @@ class InputHandlerTest {
         final String soupQuantity = "2 ";
         final String bread =  "2 ";
         final String breadQuantity = "1 ";
-        final String calculate = "c ";
+        final String calculate = "C ";
         provideInput(soup + soupQuantity + bread + breadQuantity + calculate);
         inputHandler.handleInput();
         assertTrue(testOut.toString().contains("1.70"));

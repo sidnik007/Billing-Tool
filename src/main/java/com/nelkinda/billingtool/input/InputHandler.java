@@ -62,11 +62,11 @@ public class InputHandler {
             System.out.println( productId);
             if (StringUtils.isNumeric(productId)) {
                 createBasketItem(productId, scanner);
-            } else if ("c".equals(productId)) {
+            } else if ("c".equalsIgnoreCase(productId) ) {
                 calculateBasket();
                 scanner.close();
                 return;
-            } else if ("q".equals(productId)) {
+            } else if ("q".equalsIgnoreCase(productId)) {
                 System.out.println("Exiting...");
                 System.exit(0);
             } else {
