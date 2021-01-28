@@ -59,6 +59,8 @@ dependencies {
     testAnnotationProcessor 'org.projectlombok:lombok'
     testCompileOnly 'org.projectlombok:lombok'
 
+    implementation 'org.apache.commons:commons-lang3:3.11'
+
     testImplementation 'io.cucumber:cucumber-java'
     testImplementation 'io.cucumber:cucumber-junit'
     testImplementation 'io.cucumber:cucumber-junit-platform-engine'
