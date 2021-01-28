@@ -2,7 +2,7 @@
 This is a Billing Application which calculates the total price of items in the basket.
 
 ### Running the application
-Makefile is used for running the application. Give the following command to run the application `make runApp`
+Makefile is used for running the application. Give the following command to run the application `make run`
 
 ### Specifications
 Specifications are converted into executable feature files.
