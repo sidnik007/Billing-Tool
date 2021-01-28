@@ -21,10 +21,10 @@ class StockItemLoaderTest {
         final StockItemLoader stockItemLoader = new InMemoryStockItemLoader();
         final List<StockItem> actualStockItem = stockItemLoader.loadStockItems();
         final List<StockItem> expectedStockItem = new ArrayList<>(Arrays.asList(
-                new StockItem(SOUP, "tin", "0.65", new SoupDiscount()),
-                new StockItem(BREAD, "loaf", "0.80", new NoDiscount()),
-                new StockItem(MILK, "bottle", "1.30", new NoDiscount()),
-                new StockItem(APPLES, "single", "0.10", new AppleDiscount())
+                new StockItem(1, SOUP, "tin", "0.65", new SoupDiscount()),
+                new StockItem(2, BREAD, "loaf", "0.80", new NoDiscount()),
+                new StockItem(3, MILK, "bottle", "1.30", new NoDiscount()),
+                new StockItem(4, APPLES, "single", "0.10", new AppleDiscount())
         ));
         assertEquals(expectedStockItem, actualStockItem);
     }

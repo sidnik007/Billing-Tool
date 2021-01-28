@@ -10,16 +10,19 @@ import java.math.BigDecimal;
 @EqualsAndHashCode
 public class StockItem {
 
+    private final int productId;
     private final String productName;
     private final String unit;
     private final BigDecimal cost;
     @EqualsAndHashCode.Exclude
     private final Discount discount;
 
-    StockItem(final String productName,
+    StockItem(final int productId,
+              final String productName,
               final String unit,
               final String cost,
               final Discount discount) {
+        this.productId = productId;
         this.productName = productName;
         this.unit = unit;
         this.cost = new BigDecimal(cost);
