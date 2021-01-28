@@ -32,7 +32,7 @@ public class BasketCalculator {
         BigDecimal discountedPrice = total;
         if (basketProductMap.containsKey("soup")
                 && basketProductMap.containsKey("bread")
-                && basketProductMap.get("soup").getQuantity() == 2
+                && basketProductMap.get("soup").getQuantity() >= 2
         ) {
             final BigDecimal costOfBread = basketProductMap.get("bread").getCost();
             final BigDecimal amountToReduce = costOfBread.divide(new BigDecimal(2));

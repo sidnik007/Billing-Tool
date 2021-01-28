@@ -90,6 +90,17 @@ class BasketCalculatorTest {
         assertTotal(basket, "0.09");
     }
 
+    @Test
+    @DisplayName("Basket with 3 tins of soup and 2 loaves of bread returns total as 3.15")
+    void testDiscountedItemsWithThreeSoupsAndTwoBreads() {
+        final List<BasketItem> basket = new ArrayList<>(Arrays.asList(
+                factory.createBasketItem(SOUP, "3"),
+                factory.createBasketItem(BREAD, "2")
+        ));
+        assertTotal(basket, "3.15");
+    }
+
+
     private void assertTotal(final List<BasketItem> basket, final String expectedTotal) {
         final BigDecimal actualTotal = calculator.calculateTotal(basket);
         assertEquals(new BigDecimal(expectedTotal), actualTotal);
