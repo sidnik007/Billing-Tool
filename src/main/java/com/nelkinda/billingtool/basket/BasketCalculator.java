@@ -7,19 +7,22 @@ import java.util.concurrent.ConcurrentHashMap;
 
 public class BasketCalculator {
 
-    private final Map<String, BasketItem> basketProductMap = new ConcurrentHashMap<>();
+    private final Map<String, BasketItem> productBasket = new ConcurrentHashMap<>();
 
 
     BigDecimal calculateTotal(final List<BasketItem> basket) {
         BigDecimal total = BigDecimal.ZERO;
         for (final BasketItem basketItem: basket) {
-            basketProductMap.put(basketItem.getProductName(), basketItem);
+            productBasket.put(basketItem.getProductName(), basketItem);
             total = total
                     .add(basketItem.getCost()
                             .multiply(BigDecimal.valueOf(basketItem.getQuantity())));
         }
-        for (final Map.Entry<String, BasketItem> entry: basketProductMap.entrySet()) {
-            total = basketProductMap.get(entry.getKey()).getDiscount().calculateDiscount(basketProductMap, total);
+        for (final Map.Entry<String, BasketItem> entry: productBasket.entrySet()) {
+            total = productBasket
+                    .get(entry.getKey())
+                    .getDiscount()
+                    .calculateDiscount(productBasket, total);
         }
         return total;
     }

@@ -16,10 +16,17 @@ public class BasketItem {
     @EqualsAndHashCode.Exclude
     private final Discount discount;
 
-    BasketItem(final String productName,
-               final String quantity,
-               final BigDecimal cost,
-               final Discount discount) {
+    /**
+     * Creates a Basket Item.
+     * @param productName - the product name to be added to the basket
+     * @param quantity - quantity of the product
+     * @param cost - cost of single unit of the product
+     * @param discount - discount applicable
+     */
+    public BasketItem(final String productName,
+                      final String quantity,
+                      final BigDecimal cost,
+                      final Discount discount) {
         this.productName = productName;
         this.quantity = Integer.parseInt(quantity);
         this.cost = cost;
