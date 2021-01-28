@@ -33,4 +33,16 @@ class BasketCalculatorTest {
         final BigDecimal actualTotal = calculator.calculateTotal(basket);
         assertEquals(new BigDecimal("0.65"), actualTotal);
     }
+
+    @Test
+    @DisplayName("Basket with two non-discounted items returns the price of the item")
+    void testSingleItemQuantityTwo() {
+        final BasketCalculator calculator = new BasketCalculator();
+        final BasketItemFactory factory = new BasketItemFactory(new InMemoryStockItemLoader());
+        final List<BasketItem> basket = new ArrayList<>(Collections.singletonList(
+                factory.createBasketItem(SOUP, "2")
+        ));
+        final BigDecimal actualTotal = calculator.calculateTotal(basket);
+        assertEquals(new BigDecimal("1.30"), actualTotal);
+    }
 }
