@@ -14,7 +14,7 @@ class StockItemLoaderTest {
     @Test
     @DisplayName("Stock loader returns the stock items")
     void testStockItemLoader() {
-        final StockItemLoader stockItemLoader = new StockItemLoader();
+        final StockItemLoader stockItemLoader = new InMemoryStockItemLoader();
         final List<StockItem> actualStockItem = stockItemLoader.loadStockItems();
         final List<StockItem> expectedStockItem = new ArrayList<>(Arrays.asList(
                 new StockItem("soup", "tin", "0.65"),
