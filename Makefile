@@ -9,6 +9,13 @@ GRADLE_BOOTSTRAP:=echo -n | $(firstword $(wildcard $(GRADLE) $(shell which gradl
 all: build
 
 .PHONY: build
+
+.PHONY: pipeline
+## Runs the same thing as the pipeline.
+pipeline:
+	$(BUILD) $(BUILDFLAGS) checkUpdates build
+
+
 ## Builds and verifies the project.
 build: $(GRADLE)
 	$(BUILD) $(BUILDFLAGS) $@
