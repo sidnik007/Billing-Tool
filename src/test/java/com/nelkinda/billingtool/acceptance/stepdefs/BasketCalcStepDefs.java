@@ -28,7 +28,7 @@ public class BasketCalcStepDefs {
 
     private Clock clock;
 
-    @Given("today's date is {string}")
+    @Given("billing date is {string}")
     public void todaySDateIs(final String currentDate) {
         final Instant instant = LocalDate.parse(currentDate).atStartOfDay(ZoneId.of("UTC")).toInstant();
         clock = Clock.fixed(instant, ZoneId.of("UTC"));
@@ -44,16 +44,6 @@ public class BasketCalcStepDefs {
         }
     }
 
-    @And("the items are eligible for discount from {string} to {string}")
-    public void theItemsAreEligibleForDiscountFromTo(final String startDate, final String endDate) {
-        for (final BasketItem basketItem : basket) {
-            final Discount discount = basketItem.getDiscount();
-            discount.setClock(clock);
-            discount.setStartDate(LocalDate.parse(startDate));
-            discount.setEndDate(LocalDate.parse(endDate));
-        }
-    }
-
     @When("the basket is calculated")
     public void theBasketIsCalculated() {
         final BasketCalculator calculator = new BasketCalculator();
@@ -63,5 +53,17 @@ public class BasketCalcStepDefs {
     @Then("the total is {string}")
     public void theTotalIs(final String expectedTotal) {
         Assertions.assertEquals(new BigDecimal(expectedTotal), actualTotal);
+    }
+
+    @And("the item {string} is eligible for discount from {string} to {string}")
+    public void theItemIsEligibleForDiscountFromTo(final String product, final String startDate, final String endDate) {
+        for (final BasketItem basketItem: basket) {
+            if (basketItem.getProductName().equals(product)) {
+                final Discount discount = basketItem.getDiscount();
+                discount.setClock(clock);
+                discount.setStartDate(LocalDate.parse(startDate));
+                discount.setEndDate(LocalDate.parse(endDate));
+            }
+        }
     }
 }
