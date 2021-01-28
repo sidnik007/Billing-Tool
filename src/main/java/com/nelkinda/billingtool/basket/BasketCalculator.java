@@ -8,7 +8,9 @@ public class BasketCalculator {
     BigDecimal calculateTotal(final List<BasketItem> basket) {
         BigDecimal total = BigDecimal.ZERO;
         for (final BasketItem basketItem: basket) {
-            total = basketItem.getCost().multiply(BigDecimal.valueOf(basketItem.getQuantity()));
+            total = total
+                    .add(basketItem.getCost()
+                            .multiply(BigDecimal.valueOf(basketItem.getQuantity())));
         }
         return total;
     }

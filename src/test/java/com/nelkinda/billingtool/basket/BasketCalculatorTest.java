@@ -7,9 +7,11 @@ import org.junit.jupiter.api.Test;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
+import static com.nelkinda.billingtool.TestConstants.BREAD;
 import static com.nelkinda.billingtool.TestConstants.SOUP;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -48,6 +50,16 @@ class BasketCalculatorTest {
                 factory.createBasketItem(SOUP, "2")
         ));
         assertTotal(basket, "1.30");
+    }
+
+    @Test
+    @DisplayName("Basket with one count of two non-discounted items returns the total price")
+    void testTwoItemsQuantityOneEach() {
+        final List<BasketItem> basket = new ArrayList<>(Arrays.asList(
+                factory.createBasketItem(SOUP, "1"),
+                factory.createBasketItem(BREAD, "1")
+        ));
+        assertTotal(basket, "1.45");
     }
 
     private void assertTotal(final List<BasketItem> basket, final String expectedTotal) {
