@@ -1,11 +1,16 @@
 package com.nelkinda.billingtool.basket;
 
+import com.nelkinda.billingtool.discount.Discount;
 import com.nelkinda.billingtool.stock.InMemoryStockItemLoader;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.math.BigDecimal;
+import java.time.Clock;
+import java.time.Instant;
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -24,6 +29,7 @@ class BasketCalculatorTest {
     void setup() {
         calculator = new BasketCalculator();
         factory = new BasketItemFactory(new InMemoryStockItemLoader());
+
     }
 
     @Test
@@ -74,30 +80,54 @@ class BasketCalculatorTest {
     @Test
     @DisplayName("Basket with 2 tins of soups and 1 loaf bread returns the total as 1.70")
     void testBasketWithTwoSoupsAndOneBread() {
-        final List<BasketItem> basket = new ArrayList<>(Arrays.asList(
-                factory.createBasketItem(SOUP, "2"),
-                factory.createBasketItem(BREAD, "1")
-        ));
+        final List<BasketItem> basket = new ArrayList<>();
+        final BasketItem soup = factory.createBasketItem(SOUP, "2");
+        final BasketItem bread = factory.createBasketItem(BREAD, "1");
+        setValidDiscountDates("2021-01-22T10:15:30.00Z",
+                "2021-01-21",
+                "2021-01-23",
+                soup.getDiscount());
+        basket.add(soup);
+        basket.add(bread);
         assertTotal(basket, "1.70");
     }
 
     @Test
     @DisplayName("Basket with 1 apple returns the total as 0.09")
     void testBasketWithOneApple() {
-        final List<BasketItem> basket = new ArrayList<>(Collections.singletonList(
-                factory.createBasketItem(APPLES, "1")
-        ));
+        final List<BasketItem> basket = new ArrayList<>();
+        final BasketItem apples = factory.createBasketItem(APPLES, "1");
+        setValidDiscountDates("2021-01-22T10:15:30.00Z",
+                "2021-01-21",
+                "2021-01-23",
+                apples.getDiscount());
+        basket.add(apples);
         assertTotal(basket, "0.09");
     }
 
     @Test
     @DisplayName("Basket with 3 tins of soup and 2 loaves of bread returns total as 3.15")
     void testBasketWithThreeSoupsAndTwoBreads() {
-        final List<BasketItem> basket = new ArrayList<>(Arrays.asList(
-                factory.createBasketItem(SOUP, "3"),
-                factory.createBasketItem(BREAD, "2")
-        ));
+        final List<BasketItem> basket = new ArrayList<>();
+        final BasketItem soup = factory.createBasketItem(SOUP, "3");
+        final BasketItem bread = factory.createBasketItem(BREAD, "2");
+        setValidDiscountDates("2021-01-22T10:15:30.00Z",
+                "2021-01-21",
+                "2021-01-23",
+                soup.getDiscount());
+        basket.add(soup);
+        basket.add(bread);
         assertTotal(basket, "3.15");
+    }
+
+    private void setValidDiscountDates(final String currentDate,
+                                       final String startDate,
+                                       final String endDate,
+                                       final Discount discount) {
+        final Clock clock = Clock.fixed(Instant.parse(currentDate), ZoneId.of("UTC"));
+        discount.setClock(clock);
+        discount.setStartDate(LocalDate.parse(startDate));
+        discount.setEndDate(LocalDate.parse(endDate));
     }
 
 
