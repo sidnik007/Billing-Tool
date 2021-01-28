@@ -11,3 +11,14 @@ Feature: Calculate the basket total
     When the basket is calculated
     Then the total is "3.15"
 
+  Scenario: Price a basket containing 6 apples and bottle of milk, bought today is 1.90
+
+    Given today's date is "2021-01-21"
+    And the basket contains following items
+      | product | quantity |
+      | apples  | 6        |
+      | milk    | 1        |
+    And the items are eligible for discount from "2021-01-24" to "2021-02-28"
+    When the basket is calculated
+    Then the total is "1.90"
+
