@@ -2,6 +2,6 @@ package com.nelkinda.billingtool.stock;
 
 import java.util.List;
 
-interface StockItemLoader {
+public interface StockItemLoader {
     List<StockItem> loadStockItems();
 }
